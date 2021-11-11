@@ -1,49 +1,40 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 
 class Event extends Component {
-  state = {
-    hidden: true,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showDetails: false,
+    };
+    this.toggleShowDetails = this.toggleShowDetails.bind(this);
+  }
 
-  handleShowDetails = () => {
+  toggleShowDetails() {
     this.setState({
-      hidden: false,
+      showDetails: !this.state.showDetails,
     });
-  };
-  handleHideDetails = () => {
-    this.setState({
-      hidden: true,
-    });
-  };
+  }
 
   render() {
-    const { event } = this.props;
+    let event = this.props.event;
 
     return (
       <div>
-        <h2 className="event-name">{event.summary}</h2>
-        <p className="start-date">{event.start.dateTime} ({event.start.timeZone})</p>
-        <p className="event-location">{event.location}</p>
+        <h2 className="event__Overview--name">{event.summary}</h2>
+        <div>
+          <p className="event__Overview--date">{event.start.dateTime} ({event.start.timeZone})</p>
+          <p className="event__Overview--location">{event.location}</p>
 
-        {this.state.hidden === true && (
-          <Button
-            className="show-details-btn"
-            onClick={this.handleShowDetails}
-          >
-            More Details</Button>
-        )}
+          {this.state.showDetails === true && (
+            <p className="event__Details--description">{event.description}</p>
+          )}
+        </div>
 
-        {this.state.hidden === false && (
-          <div className="more-details">
-            <h3>About this event:</h3>
-            <p className="event-description">{event.description}</p>
-            <Button
-              className="hide-details-btn"
-              onClick={this.handleHideDetails}
-            >Hide Details</Button>
-          </div>
-        )}
+        <button className="details-btn" onClick={this.toggleShowDetails}>
+          {!this.state.showDetails ? 'Show Details' : 'Hide Details'}
+        </button>
+
       </div>
     );
   }
