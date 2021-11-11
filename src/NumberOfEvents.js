@@ -14,6 +14,7 @@ class NumberOfEvents extends Component {
   }
 
   render() {
+    const { numberOfEvents } = this.state;
     return (
       <div className="events-range">
         <h3>Adjust the number of events</h3>
@@ -21,7 +22,7 @@ class NumberOfEvents extends Component {
           min={1}
           max={32}
           className="number-on-range"
-          value={this.state.numberOfEvents}
+          value={numberOfEvents}
           onChange={this.handleNumberChange}
         />
       </div>
