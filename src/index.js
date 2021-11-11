@@ -4,9 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { Row } from 'react-bootstrap';
+import logo from './img/meet-logo-192.png';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Row><img src={logo} alt="meet logo" /></Row>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
