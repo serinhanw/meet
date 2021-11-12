@@ -20,7 +20,7 @@ class Event extends Component {
     let event = this.props.event;
 
     return (
-      <div>
+      <div className="event">
         <h2 className="event__Overview--name">{event.summary}</h2>
         <div>
           <p className="event__Overview--date">{event.start.dateTime} ({event.start.timeZone})</p>

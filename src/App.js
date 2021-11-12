@@ -56,6 +56,7 @@ class App extends Component {
   // };
 
   render() {
+    const { locations, numberOfEvents, events } = this.state;
     return (
       // <div className="App">
       //   <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
@@ -66,15 +67,15 @@ class App extends Component {
       <Container className="App">
         <Row>
           <Col className="CitySearchWrapper" md={6}>
-            <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+            <CitySearch locations={locations} updateEvents={this.updateEvents} />
           </Col>
           <Col className="NumberInputWrapper" md={6}>
-            <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
+            <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
           </Col>
         </Row>
         <Row>
           <Col md={12}>
-            <EventList events={this.state.events} />
+            <EventList events={events} />
           </Col>
         </Row>
       </Container>
