@@ -4,8 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import * as atatus from 'atatus-spa';
+
 import { Row } from 'react-bootstrap';
 import logo from './img/meet-logo-192.png';
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,3 +27,5 @@ serviceWorkerRegistration.unregister();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+atatus.config('56f64fe5874e49bdafc88835bc558a85').install();
+// atatus.notify(new Error('Test Atatus Setup'));
