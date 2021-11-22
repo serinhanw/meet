@@ -7,6 +7,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import './nprogress.css';
 // import logo from './img/meet-logo-192.png';
+import { InfoAlert, ErrorAlert } from "./Alert";
 
 
 class App extends Component {
@@ -15,6 +16,8 @@ class App extends Component {
     locations: [],
     currentLocation: 'all',
     numberOfEvents: 12,
+    errorText: '',
+    infoText: ''
   }
 
   componentDidMount() {
@@ -54,6 +57,21 @@ class App extends Component {
   //   await this.setState({ numberOfEvents: newVal });
   //   this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
   // };
+  updateEventCount = async (e) => {
+    const newVal = e.target.value ? parseInt(e.target.value) : 12;
+
+    if (newVal < 1 || newVal > 12) {
+      await this.setState({
+        errorText: 'Please choose a number between 1 and 12',
+      });
+    } else {
+      await this.setState({
+        errorText: '',
+        numberOfEvents: newVal,
+      });
+      this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
+    }
+  };
 
   render() {
     const { locations, numberOfEvents, events } = this.state;
@@ -70,7 +88,11 @@ class App extends Component {
             <CitySearch locations={locations} updateEvents={this.updateEvents} />
           </Col>
           <Col className="NumberInputWrapper" md={6}>
-            <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
+            {/* <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} /> */}
+            <NumberOfEvents
+              numberOfEvents={numberOfEvents}
+              updateEventCount={this.updateEventCount}
+              errorText={this.state.errorText} />
           </Col>
         </Row>
         <Row>

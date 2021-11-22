@@ -13,7 +13,8 @@ describe('<NumberOfEvents /> component', () => {
   });
 
   test("render default number of events correctly", () => {
-    const numberOfEvents = NumberOfEventsWrapper.state("numberOfEvents");
+    // const numberOfEvents = NumberOfEventsWrapper.state("numberOfEvents");
+    const numberOfEvents = NumberOfEventsWrapper.prop("numberOfEvents");
     expect(NumberOfEventsWrapper.find(".number-on-range").prop("value")).toBe(numberOfEvents);
   });
 
