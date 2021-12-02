@@ -6,13 +6,13 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import * as atatus from 'atatus-spa';
 
-import { Row } from 'react-bootstrap';
-import logo from './img/meet-logo-192.png';
+// import { Row } from 'react-bootstrap';
+// import logo from './img/meet-logo-192.png';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Row><img src={logo} alt="meet logo" /></Row>
+    {/* <Row><img src={logo} alt="meet logo" /></Row> */}
     <App />
   </React.StrictMode>,
   document.getElementById('root')

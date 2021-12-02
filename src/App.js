@@ -7,6 +7,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import './nprogress.css';
 // import logo from './img/meet-logo-192.png';
+import Header from "./Header";
 import { InfoAlert, ErrorAlert } from "./Alert";
 
 
@@ -81,26 +82,31 @@ class App extends Component {
       //   <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
       //   <EventList events={this.state.events} />
       // </div>
-
-      <Container className="App">
-        <Row>
-          <Col className="CitySearchWrapper" md={6}>
-            <CitySearch locations={locations} updateEvents={this.updateEvents} />
-          </Col>
-          <Col className="NumberInputWrapper" md={6}>
-            {/* <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} /> */}
-            <NumberOfEvents
-              numberOfEvents={numberOfEvents}
-              updateEventCount={this.updateEventCount}
-              errorText={this.state.errorText} />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12}>
-            <EventList events={events} />
-          </Col>
-        </Row>
-      </Container>
+      <div className="App">
+        <Header />
+        {/* <Container className="App"> */}
+        <main>
+          <Container>
+            <Row>
+              <Col className="CitySearchWrapper" md={6}>
+                <CitySearch locations={locations} updateEvents={this.updateEvents} />
+              </Col>
+              <Col className="NumberInputWrapper" md={6}>
+                {/* <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} /> */}
+                <NumberOfEvents
+                  numberOfEvents={numberOfEvents}
+                  updateEventCount={this.updateEventCount}
+                  errorText={this.state.errorText} />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={12}>
+                <EventList events={events} />
+              </Col>
+            </Row>
+          </Container>
+        </main>
+      </div>
 
     );
   }
