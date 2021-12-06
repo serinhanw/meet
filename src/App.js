@@ -6,7 +6,7 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import './nprogress.css';
-// import logo from './img/meet-logo-192.png';
+import logo from './img/meet-logo-192.png';
 import Header from "./Header";
 import { InfoAlert, ErrorAlert } from "./Alert";
 
@@ -83,10 +83,17 @@ class App extends Component {
       //   <EventList events={this.state.events} />
       // </div>
       <div className="App">
-        <Header />
+        {/* <Header /> */}
         {/* <Container className="App"> */}
         <main>
           <Container>
+            <header>
+              <Row>
+                <h1 className="header-logo">
+                  <img src={logo} alt="Meet Logo" />
+                </h1>
+              </Row>
+            </header>
             <Row>
               <Col className="CitySearchWrapper" md={6}>
                 <CitySearch locations={locations} updateEvents={this.updateEvents} />
