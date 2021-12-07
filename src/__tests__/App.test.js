@@ -6,7 +6,7 @@ import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
-import { waitFor } from "@testing-library/react";
+// import { waitFor } from "@testing-library/react";
 // Separating diff tests by creating new scopes help keep everything organized 
 
 // Scope (unit test)
@@ -80,6 +80,7 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
+  //
 
 
 });

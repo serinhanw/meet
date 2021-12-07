@@ -12,7 +12,6 @@ import * as atatus from 'atatus-spa';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Row><img src={logo} alt="meet logo" /></Row> */}
     <App />
   </React.StrictMode>,
   document.getElementById('root')

@@ -4,11 +4,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { getEvents, extractLocations } from './api';
+import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import './nprogress.css';
 import logo from './img/meet-logo-192.png';
-import Header from "./Header";
-import { InfoAlert, ErrorAlert } from "./Alert";
+// import Header from "./Header";
+import { InfoAlert, ErrorAlert, WarningAlert } from "./Alert";
+import WelcomeScreen from './WelcomeScreen';
 
 
 class App extends Component {
@@ -18,7 +19,9 @@ class App extends Component {
     currentLocation: 'all',
     numberOfEvents: 12,
     errorText: '',
-    infoText: ''
+    infoText: '',
+    warningText: '',
+    showWelcomeScreen: undefined,
   }
 
   componentDidMount() {
@@ -32,6 +35,46 @@ class App extends Component {
       }
     });
   }
+
+
+  // async componentDidMount() {
+  //   this.mounted = true;
+  //   const accessToken = localStorage.getItem('access_token');
+  //   const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+  //   const searchParams = new URLSearchParams(window.location.search);
+  //   const code = searchParams.get("code");
+  //   this.setState({
+  //     showWelcomeScreen: !(
+  //       code ||
+  //       isTokenValid ||
+  //       window.location.hostname === 'localhost'
+  //     )
+  //   });
+  //   if ((code || isTokenValid) && this.mounted) {
+  //     getEvents().then((events) => {
+  //       if (this.mounted) {
+  //         this.setState({
+  //           events: events.slice(0, this.state.numberOfEvents),
+  //           // events,
+  //           locations: extractLocations(events)
+  //         });
+  //       }
+  //     });
+  //   }
+
+
+  //   if (navigator.onLine) {
+  //     console.log('online');
+  //     this.setState({
+  //       warningText: "",
+  //     });
+  //   } else {
+  //     console.log('offline');
+  //     this.setState({
+  //       warningText: "You are currently using the app offline.",
+  //     });
+  //   }
+  // }
 
   componentWillUnmount() {
     this.mounted = false;
@@ -76,6 +119,7 @@ class App extends Component {
 
   render() {
     const { locations, numberOfEvents, events } = this.state;
+    if (this.state.showWelcomeScreen === undefined);
     return (
       // <div className="App">
       //   <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
@@ -95,6 +139,7 @@ class App extends Component {
               </Row>
             </header>
             <Row>
+              <WarningAlert text={this.state.warningText} />
               <Col className="CitySearchWrapper" md={6}>
                 <CitySearch locations={locations} updateEvents={this.updateEvents} />
               </Col>
@@ -113,6 +158,7 @@ class App extends Component {
             </Row>
           </Container>
         </main>
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
 
     );
