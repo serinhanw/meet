@@ -133,9 +133,10 @@ class App extends Component {
           <Container>
             <header>
               <Row>
-                <h1 className="header-logo">
+                {/* <h1 className="header-logo">
                   <img src={logo} alt="Meet Logo" />
-                </h1>
+                </h1> */}
+                <h1>Meet Application</h1>
               </Row>
             </header>
             <Row>
