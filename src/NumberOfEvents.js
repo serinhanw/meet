@@ -21,7 +21,7 @@ class NumberOfEvents extends Component {
     // const { numberOfEvents } = this.state;
     return (
       <div className="events-range">
-        <h3>Adjust the number of events</h3>
+        <h4>Adjust the number of events</h4>
         <RangeSlider
           min={1}
           max={12}

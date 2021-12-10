@@ -10,6 +10,8 @@ import logo from './img/meet-logo-192.png';
 // import Header from "./Header";
 import { InfoAlert, ErrorAlert, WarningAlert } from "./Alert";
 import WelcomeScreen from './WelcomeScreen';
+import EventGenre from './EventGenre';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 
 class App extends Component {
@@ -117,6 +119,16 @@ class App extends Component {
     }
   };
 
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return { city, number };
+    })
+    return data;
+  };
+
   render() {
     const { locations, numberOfEvents, events } = this.state;
     if (this.state.showWelcomeScreen === undefined);
@@ -134,7 +146,7 @@ class App extends Component {
             <header>
               <Row>
                 <h1 className="header-logo">
-                  <img src={logo} alt="Meet Logo" />
+                  <img src={logo} alt="Meet Logo" className="meetlogo" />
                 </h1>
                 {/* <h1>Meet Application</h1> */}
               </Row>
@@ -150,6 +162,29 @@ class App extends Component {
                   numberOfEvents={numberOfEvents}
                   updateEventCount={this.updateEventCount}
                   errorText={this.state.errorText} />
+              </Col>
+            </Row>
+            <Row className="d-flex justify-content-center charts-wrapper">
+              <Col sm={12} md={10} lg={10}>
+                <div className="data-vis-wrapper">
+                  <EventGenre events={this.state.events} />
+                  <ResponsiveContainer height={400} className="scattered-chart">
+                    <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                      <CartesianGrid />
+                      <XAxis
+                        tick={{ fill: "black" }}
+                        type="category" dataKey="city" name="city"
+                      />
+                      <YAxis
+                        tick={{ fill: "black" }}
+                        allowDecimals={false}
+                        type="number" dataKey="number" name="number of events"
+                      />
+                      <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                      <Scatter data={this.getData()} fill="white" />
+                    </ScatterChart>
+                  </ResponsiveContainer>
+                </div>
               </Col>
             </Row>
             <Row>
